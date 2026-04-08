@@ -1,1 +1,31 @@
-<p>characterdetails works!</p>
+<div class="spinner-container" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<mat-card class="details-card" *ngIf="!loading && character">
+  <img
+    mat-card-image
+    [src]="getCharacterImage(character.image)"
+    [alt]="character.name"
+  />
+
+  <mat-card-content>
+    <h2>{{ character.name }}</h2>
+    <p><strong>Species:</strong> {{ getValue(character.species) }}</p>
+    <p><strong>House:</strong> {{ getValue(character.house) }}</p>
+    <p><strong>Wizard:</strong> {{ character.wizard ? 'Yes' : 'No' }}</p>
+    <p><strong>Ancestry:</strong> {{ getValue(character.ancestry) }}</p>
+    <p><strong>Actor:</strong> {{ getValue(character.actor) }}</p>
+
+    <h3>Wand</h3>
+    <p><strong>Wood:</strong> {{ getValue(character.wand.wood) }}</p>
+    <p><strong>Core:</strong> {{ getValue(character.wand.core) }}</p>
+    <p><strong>Length:</strong> {{ getWandLength(character.wand.length) }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-raised-button color="primary" routerLink="/">Back to List</a>
+  </mat-card-actions>
+</mat-card>

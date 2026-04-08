@@ -1,16 +1,27 @@
-import { TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Character } from '../models/character';
 
-import { Harrypotter } from './harrypotter';
+@Injectable({
+  providedIn: 'root'
+})
+export class HarrypotterService {
+  private baseUrl = 'https://hp-api.onrender.com/api';
 
-describe('Harrypotter', () => {
-  let service: Harrypotter;
+  constructor(private http: HttpClient) {}
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(Harrypotter);
-  });
+  getAllCharacters(): Observable<Character[]> {
+    return this.http.get<Character[]>(`${this.baseUrl}/characters`);
+  }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-});
+  getCharactersByHouse(house: string): Observable<Character[]> {
+    return this.http.get<Character[]>(
+      `${this.baseUrl}/characters/house/${encodeURIComponent(house)}`
+    );
+  }
+
+  getCharacterById(id: string): Observable<Character> {
+    return this.http.get<Character>(`${this.baseUrl}/character/${id}`);
+  }
+}

@@ -1,0 +1,29 @@
+.character-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.character-card {
+  height: 100%;
+}
+
+.character-card img {
+  height: 320px;
+  object-fit: cover;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.error {
+  color: red;
+  font-weight: 500;
+}
+
+h3 {
+  margin-bottom: 8px;
+}

@@ -1,1 +1,9 @@
-<p>characterfilter works!</p>
+<mat-form-field appearance="outline" class="filter-field">
+  <mat-label>Filter by House</mat-label>
+  <mat-select [(ngModel)]="selectedHouse" (selectionChange)="onHouseChange()">
+    <mat-option value="">All</mat-option>
+    <mat-option *ngFor="let house of houses" [value]="house">
+      {{ house }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
